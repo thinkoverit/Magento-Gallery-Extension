@@ -1,0 +1,110 @@
+<?php
+/**
+ * Toit Gallery
+ *
+ * Provides an image gallery extension for Magento
+ *
+ * @category	ThinkOverIT
+ * @package		Gallery
+ * @author		ThinkOverIT
+ * @copyright	Copyright (c) 20012, ThinkOverIT.com	
+ * @license		http://creativecommons.org/licenses/by-nc-sa/3.0/us/
+ * @link		http://www.ThinkOverIT.com
+ * @since		Version 0.1.0
+ *
+ * Please feel free to modify or distribute this as you like,
+ * so long as it's for noncommercial purposes and any
+ * copies or modifications keep this comment block intact
+ *
+ * If you would like to use this for commercial purposes,
+ * please contact me at info@thinkoverit.com
+ *
+ * For any feedback, comments, or questions, please post
+ * it on our blog at http://www.thinkoverit.com/plugins/magento/gallery/
+ *
+ */
+ 
+$items = $this->getAlbums();
+
+?>
+<div class="gallery_container">
+	<div class="gallery_wrapper">
+<?php if(count($items)) { ?>
+
+<?php
+	foreach($items as $item)
+	{
+			$thumbnail = str_replace("\\","/",$item->getThumbnailUrl(250,250));
+?>	
+			<div class="gallery_item">
+				<a href="<?php echo $this->getGalleryUrl($item)?>" class="<?php echo $this->getFancyClass($item); ?>" title="<?php echo $item->getTitle()?>">
+					<img src="<?php echo $thumbnail;?>" title="<?php echo $item->getTitle()?>" alt="<?php echo $item->getAlt()?>"/>		           		                
+				</a>
+				<div class="gallery_item_caption">
+					<span class="gallery_item_title"><a href="<?php echo $this->getGalleryUrl($item)?>"><?php echo $item->getTitle()?></a></span>
+					<p class="gallery_item_description"><?php echo $item->getDescription(); ?></p>
+				</div>
+				<div class="social_wrapper">
+					<div class="social_sharing">	
+						<div class="share_fb">
+							<div class="fb-like" data-href="<?php echo $this->getGalleryUrl($item)?>" 
+								data-send="false" data-layout="button_count" data-show-faces="false"></div>
+						</div>
+						<div class="share_tw">
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $this->getGalleryUrl($item)?>" 
+								data-text="<?php echo htmlspecialchars('Check out "'.$item->getTitle().'"'); ?>">Tweet</a>
+						</div>
+						<div class="share_gplus">
+							<g:plusone size="medium" href="<?php echo $this->getGalleryUrl($item)?>"></g:plusone>
+						</div>
+					</div>
+				</div>
+		   </div>
+<?php } ?>
+
+<?php } ?>
+		<div class="clear"></div>
+	<div>
+<script type="text/javascript">
+//<![CDATA[
+jQuery(document).ready(function() {
+	var twscript = '<script type="text/javascript">';
+		twscript += '/*<![CDATA[*/';
+		twscript += '!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");';
+		twscript += '/*/]]>*/';
+		twscript += '<\/script>';
+	var gplusscript = '<script type="text/javascript">';
+		gplusscript += '/*<![CDATA[*/';
+		gplusscript += '(function() {';
+		gplusscript += 'var po = document.createElement(\'script\'); po.type = \'text/javascript\'; po.async = true;';
+		gplusscript += 'po.src = \'https://apis.google.com/js/plusone.js\';';
+		gplusscript += 'var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(po, s);';
+		gplusscript += '}());';
+		gplusscript += '/*/]]>*/';
+		gplusscript += '<\/script>';
+	var fbscript = '<script type="text/javascript">';
+		fbscript += '/*<![CDATA[*/';
+		fbscript += '(function(d, s, id) {';
+		fbscript += 'var js, fjs = d.getElementsByTagName(s)[0];';
+		fbscript += 'if (d.getElementById(id)) {return;}';
+		fbscript += 'if (d.getElementById(id)) {return;}';
+		fbscript += 'js = d.createElement(s); js.id = id;';
+		fbscript += 'js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";';
+		fbscript += 'fjs.parentNode.insertBefore(js, fjs);}';
+		fbscript += '(document, "script", "facebook-jssdk"));';
+		fbscript += '/*/]]>*/';
+		fbscript += '<\/script>';
+
+	if (typeof(FB) == 'undefined')
+		jQuery('body').append(fbscript);
+	if (typeof(gapi) == 'undefined')
+		jQuery('body').append(gplusscript);
+	if (typeof(twttr) == 'undefined')
+		jQuery('body').append(twscript);
+});	
+
+	jQuery(".gallery_fancybox").fancybox({type: 'ajax',autoSize : true,});
+
+//]]>
+</script>
+</div>

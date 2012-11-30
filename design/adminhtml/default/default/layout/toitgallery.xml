@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <gallery_adminhtml_gallery_index>
+        <reference name="content">
+            <block type="gallery/adminhtml_gallery"  name="gallery" />
+        </reference>
+    </gallery_adminhtml_gallery_index>
+    <gallery_adminhtml_gallery_album>
+        <reference name="content">
+            <block type="gallery/adminhtml_gallery" name="gallery" />
+        </reference>
+    </gallery_adminhtml_gallery_album>
+</layout>
