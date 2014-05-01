@@ -84,7 +84,7 @@
 
     <adminhtml>
 		<menu>
-			<gallery module="seller">
+			<gallery module="gallery">
 				<title>Gallery</title>
 				<sort_order>500</sort_order>               
 				<children>
