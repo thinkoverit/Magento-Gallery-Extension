@@ -71,15 +71,15 @@
 		</layout>
     </frontend>
 	<admin>
-		<routers>
-			<gallery>
-				<use>admin</use>
-				<args>
-					<module>Toit_Gallery</module>
-					<frontName>gallery</frontName>
-				</args>
-			</gallery>
-		</routers>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <toit_gallery after="Mage_Adminhtml">Toit_Gallery_Adminhtml</toit_gallery>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
 	</admin>
 
     <adminhtml>
@@ -91,12 +91,12 @@
 					<grid module="gallery">
 						<title>Manage Gallery</title>
 						<sort_order>1</sort_order>
-						<action>gallery/adminhtml_gallery/</action>
+						<action>adminhtml/gallery/</action>
 					</grid>
 					<album module="gallery">
 						<title>Manage Albums</title>
 						<sort_order>2</sort_order>
-						<action>gallery/adminhtml_gallery/album</action>
+						<action>adminhtml/gallery/album</action>
 					</album>
 				</children>
 			</gallery>
